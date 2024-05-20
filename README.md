@@ -24,7 +24,7 @@
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6982fc9a-a38e-4288-afb5-8d6dc3616aa6)
 ### 一、	使用R語言繪製文字雲：
 使用R軟體文字斷詞、分詞及繪製成文字雲圖，執行手動另存為圖片。
-### 在R或Rstudio軟體執行套件
+### 執行套件
 ```
 install.packages("jiebaR")
 install.packages("wordcloud")
@@ -68,3 +68,73 @@ letterCloud(freq_ch, 'OK', size = 0.5)
 letterCloud(freq_ch, 'R', size = 0.5)
 wordcloud2(freq_ch, size = 0.4,shape = 'star')
 ```
+### 執行結果
+繪製好的文字雲圖將存成圖檔:請點選Export/Save as an image file/請選好路徑及命名/save即可。(執行文字符號時出現文字雲結果反應很慢甚至沒出現文字雲需要多式幾次就會成功)
+
+註：從2023年11月底使用letterCloud函數無法將文字運行出造型。
+
+### 解決方式：在R或Rstudio軟體做處理
+```
+options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+install.packages("jsonlite")
+library('devtools')
+devtools::install_github("lchiffon/wordcloud2")
+```
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/e66ceb2e-6186-4bae-b01e-5b52ee7ff493)
+### 二、	使用Python繪製文字雲：
+使用Python軟體文字斷詞、分詞及繪製成文字雲圖，執行後會自動另存為圖片。
+### 執行套件
+```
+pip install pillow 
+pip install wordcloud 
+pip install matplotlib 
+pip install jieba
+pip install numpy指令安裝套件。
+```
+### 程式碼
+``` python
+#程式
+%matplotlib inline
+from PIL import Image
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+import jieba
+import numpy as np
+from collections import Counter
+# 如果檔案內有一些編碼錯誤，使用 errors='ignore' 來忽略錯誤
+with open("財經_房地產_1.txt", encoding="Utf-8", errors='ignore') as f: text = f.read()
+
+# 設定使用 big5 斷詞
+jieba.set_dictionary('./dict.txt.big')
+wordlist = jieba.cut(text)
+words = " ".join(wordlist)
+
+# 從 Google 下載的中文字型
+font = 'SourceHanSansTW-Regular.otf'
+
+#背景顏色預設黑色，改為白色、使用指定圖形、使用指定字體(一般文字雲)
+#my_wordcloud = WordCloud(background_color='white',font_path=font).generate(words)
+
+#文字雲造型圖片
+mask = np.array(Image.open('Python-Symbol.png')) #文字雲形狀
+
+#背景顏色預設黑色，改為白色、使用指定圖形、使用指定字體
+my_wordcloud = WordCloud(background_color='white',mask=mask,font_path=font).generate(words)
+
+#產生圖片
+plt.figure(figsize=(6,6))
+plt.imshow(my_wordcloud)
+plt.axis("off")
+plt.show()
+#存檔
+my_wordcloud.to_file('word_cloud.png')
+```
+### 執行前結果
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/93239fa8-c50d-46ac-afb7-74aeca4d4401)
+
+### 執行後結果
+背景一定要是純白色的才會配合黑字或黑圖演算法走，請不要用透明背景只有黑字或黑圖來執行出文字雲，這樣子會把整個文字圖給壟罩起來(天上少有，地下難尋)。
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6a3e085d-94f8-4404-8b18-bda7b2640e79)
+
+
+
