@@ -137,8 +137,10 @@ my_wordcloud.to_file('word_cloud.png')
 
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6a3e085d-94f8-4404-8b18-bda7b2640e79)
 
-### 三、	在SQLServer軟體使用R語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
-用2019版本執行套件時只能在[https://cran-archive.r-project.org/bin/windows/contrib/3.5/]網站下載所需要的套面，放在SQLServer的R_SERVER資料夾上面。
+### 三、在SQLServer軟體使用R語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
+用2019版本執行套件時只能在
+[https://cran-archive.r-project.org/bin/windows/contrib/3.5/]
+網站下載所需要的套面，放在SQLServer的R_SERVER資料夾上面。
 ### 程式碼：
 ``` SQL
 EXEC sp_execute_external_script
@@ -181,7 +183,7 @@ dev.off()
 
 繪製好的文字雲圖目前只有單調的形狀，畢竟它也是結果已經很不錯了。
 
-### 四、	在SQLServer軟體使用Python語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
+### 四、在SQLServer軟體使用Python語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
 用2019版本時執行pip install pillow==9.4.0執行安裝套件。需要再SQLSERVER的PYTHOM_SERVER上執行。
 ### 程式碼：
 ``` SQL
