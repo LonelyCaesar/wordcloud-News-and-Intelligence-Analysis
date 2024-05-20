@@ -134,6 +134,7 @@ my_wordcloud.to_file('word_cloud.png')
 
 ### 執行後結果
 背景一定要是純白色的才會配合黑字或黑圖演算法走，請不要用透明背景只有黑字或黑圖來執行出文字雲，這樣子會把整個文字圖給壟罩起來(天上少有，地下難尋)。
+
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6a3e085d-94f8-4404-8b18-bda7b2640e79)
 
 
