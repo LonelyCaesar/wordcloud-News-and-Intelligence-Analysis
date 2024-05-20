@@ -1,1 +1,2 @@
-本專題要使用（Word Cloud）製作文字雲並進行新聞情感分析是一個非常有趣且實用的專題。以下是使用Python和R來連接SQL Server並製作文字雲的詳細步驟說明。
+# wordcloud-News-and-Intelligence-Analysis
+
