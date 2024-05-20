@@ -18,5 +18,5 @@
 
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/eb3d310d-a42e-4e15-a494-61f7dc281924)
 
-
+從廣義來說，相似的可視化技術並不限於用於文字雲。
 
