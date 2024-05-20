@@ -138,7 +138,7 @@ my_wordcloud.to_file('word_cloud.png')
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6a3e085d-94f8-4404-8b18-bda7b2640e79)
 
 ### 三、	在SQLServer軟體使用R語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
-用2019版本執行套件時只能在https://cran-archive.r-project.org/bin/windows/contrib/3.5/網站下載所需要的套面，放在SQLServer的R_SERVER資料夾上面。
+用2019版本執行套件時只能在[https://cran-archive.r-project.org/bin/windows/contrib/3.5/]網站下載所需要的套面，放在SQLServer的R_SERVER資料夾上面。
 ### 程式碼：
 ``` SQL
 EXEC sp_execute_external_script
@@ -176,4 +176,55 @@ wordcloud(freq_ch$Words, freq_ch$Freq, scale = c(13, 5), min.freq = 2, random.or
 dev.off()
 '
 ```
+### 執行結果:
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/4c95d54f-3a52-41b6-9696-da8eb7b843e1)
 
+繪製好的文字雲圖目前只有單調的形狀，畢竟它也是結果已經很不錯了。
+
+### 四、	在SQLServer軟體使用Python語言繪製文字雲，執行後會自動另存為圖片。(要先設定「啟動外部程式碼」值，在整批執行。)
+用2019版本時執行pip install pillow==9.4.0執行安裝套件。需要再SQLSERVER的PYTHOM_SERVER上執行。
+### 程式碼：
+``` SQL
+EXEC sp_execute_external_script  
+	@language = N'Python'  
+	, @script = N'
+from PIL import Image
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+import pandas as pd
+import jieba
+from collections import Counter
+
+# 如果檔案內有一些編碼錯誤，使用 errors="ignore" 來忽略錯誤
+with open("數入自己的路徑\\house_1.txt", encoding="Utf-8", errors="ignore") as f: text = f.read()
+
+# 設定使用 big5 斷詞
+jieba.set_dictionary("數入自己的路徑\\dict.txt.big.txt")
+wordlist = jieba.cut(text, cut_all=False)
+words = " ".join(wordlist)
+
+# 從Windows讀取中文字型
+font_path = "C:\Windows\Fonts\kaiu.ttf"
+
+#背景顏色預設黑色，改為白色、使用指定圖形、使用指定字體(一般文字雲)
+wc = WordCloud(font_path=font_path, width=800, height=800, background_color="white").generate(words)
+
+#產生圖片
+wordcloud = wc.generate(words)
+wordcloud.to_file("數入自己的路徑\\wordcloud0.png")
+
+#檢查確定是否有執行成功
+print("Word cloud image saved successfully!")
+'
+```
+### 執行結果:
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/21729bb9-10c1-4dd1-a454-e3065b54ae55)
+
+繪製好的文字雲圖目前只有單調的形狀，畢竟它也是結果已經很不錯了。
+
+# 四、結論
+通過這些步驟，我們可以使用Python和R從SQL Server中提取數據，然後生成文字雲並進行情感分析。這些工具和方法能夠幫助我們更好地理解和可視化大量文本數據中的信息。文字雲是可視化的詞頻統計表，常用於具體化和形象化政治演講的話題和內容。
+# 五、參考
+好學校Hahow R語言系列課程。
+資展國際R語言系列課程。
+巨匠電腦Azure for ML及R語言資料分析。
