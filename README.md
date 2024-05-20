@@ -19,5 +19,21 @@
 ![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/eb3d310d-a42e-4e15-a494-61f7dc281924)
 
 從廣義來說，相似的可視化技術並不限於用於文字雲。
-
 # 三、實作
+針對已經貼好的新聞文字及命名的.txt作執行。
+![image](https://github.com/LonelyCaesar/wordcloud-News-and-Intelligence-Analysis/assets/101235367/6982fc9a-a38e-4288-afb5-8d6dc3616aa6)
+### 一、	使用R語言繪製文字雲：
+使用R軟體文字斷詞、分詞及繪製成文字雲圖，執行手動另存為圖片。
+```
+install.packages("jiebaR")
+install.packages("wordcloud")
+install.packages("wordcloud2")
+install.packages("RColorBrewer")
+```
+
+### 程式碼
+
+
+``` R
+
+```
